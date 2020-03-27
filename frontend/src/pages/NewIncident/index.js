@@ -1,5 +1,6 @@
 import React , {useState}from 'react';
 import {Link, useHistory} from 'react-router-dom';
+import {Animated} from "react-animated-css";
 import {FiArrowLeft} from 'react-icons/fi';
 
 import api from '../../services/api';
@@ -16,6 +17,7 @@ export default function NewIncident() {
   const [description, setDescription] = useState('');
   const [value, setValue] = useState('');
 
+ 
   async function handleNewIncident(event) {
     event.preventDefault();
 
@@ -24,7 +26,7 @@ export default function NewIncident() {
       description,
       value
     }
-
+  
     try {
       await api.post('incidents',
         data, {
@@ -40,43 +42,47 @@ export default function NewIncident() {
   }
 
   return (
-    <div className="new-incident-container">
-      <div className="content">
-        <section>
-          <img src={logoImg} alt="Be The Hero"/>
+    <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+       <div className="new-incident-container">
+          <div className="content">
+            <section>
+              <img src={logoImg} alt="Be The Hero"/>
 
-          <h1>Cadastrar novo caso</h1>
-          <p>Descreva o caso detalhadamente para encontrar um herói para resolver isso.</p>
+              <h1>Cadastrar novo caso</h1>
+              <p>Descreva o caso detalhadamente para encontrar um herói para resolver isso.</p>
 
-          <Link className="back-link" to="/profile">
-            <FiArrowLeft size={16} color="#e02041" />
-            Voltar para home
-          </Link>
-        </section>
+              <Link className="back-link" to="/profile">
+                <FiArrowLeft size={16} color="#e02041" />
+                Voltar para home
+              </Link>
+            </section>
 
-        <form onSubmit={handleNewIncident}>
-          <input
-            placeholder="Título do caso"
-            value={title}
-            onChange={event => setTitle(event.target.value)}
-          />
-          <textarea 
-            placeholder="Descrição"
-            type="email"
-            value={description}
-            onChange={event => setDescription(event.target.value)}
-          />
-          <input 
-            placeholder="Valor em reais"
-            value={value}
-            onChange={event => setValue(event.target.value)}
-          />
+            <form onSubmit={handleNewIncident}>
+              <input
+                placeholder="Título do caso"
+                name="title"
+                value={title}
+                onChange={event => setTitle(event.target.value)}
+              />
+              <textarea 
+                placeholder="Descrição"
+                name="description"
+                value={description}
+                onChange={event => setDescription(event.target.value)}
+              />
+              <input 
+                placeholder="Valor em reais"
+                name="value"
+                value={value}
+                onChange={event => setValue(event.target.value)}
+              />
 
-          <button className="button" type="submit">
-            Cadastrar
-          </button>
-        </form>
-      </div>
-    </div>
+              <button className="button" type="submit">
+                Cadastrar
+              </button>
+            </form>
+          </div>
+       </div>
+    </Animated>
   );
 }

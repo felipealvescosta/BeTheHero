@@ -17,17 +17,16 @@ module.exports = {
       'ongs.city',
       'ongs.uf'
     ]);
-
-    console.log(count);
+    
     res.header('X-Total-Count', count['count(*)']); 
     return res.json(incidents);
   }, 
 
   async create(req, res){
     const {title, description, value} = req.body;
-    const ong_id = req.headers.autorization; 
+    const ong_id = req.headers.authorization; 
+    
 
-    console.log(title, description, value, ong_id);
     const [id] = await connection('incidents').insert({
       title,
       description,
@@ -40,7 +39,7 @@ module.exports = {
 
   async delete(req, res){
       const {id} = req.params;
-      const ong_id = req.headers.autorization;
+      const ong_id = req.headers.authorization;
 
       const incident = await connection('incidents')
           .where('id', id)

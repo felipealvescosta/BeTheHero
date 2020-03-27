@@ -9,16 +9,17 @@ import logoImg from '../../assets/logo.svg';
 import heroesImg from '../../assets/heroes.png';
 
 export default function Logon() {
-  const [id, setId] = useState('');
+  const [email, setEmail] = useState('');
   const history = useHistory();
 
   async function handleLogin(event) {
     event.preventDefault();
 
     try {
-      const {data} = await api.post('sessions', {id});
-
-      localStorage.setItem('ongId', id);
+      const {data} = await api.post('sessions', {email});
+      
+      localStorage.setItem('ongId', data.id);
+      localStorage.setItem('ongEmail', email);
       localStorage.setItem('ongName', data.name);
 
       history.push('/profile');
@@ -36,16 +37,15 @@ export default function Logon() {
           <h1>Faça seu logon</h1>
 
           <input
-            placeholder="Sua ID"
+            placeholder="Seu email"
             type="text"
-            value={id}
-            onChange={(event) => setId(event.target.value)}
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
           />
           <button className="button">Entrar</button>
 
           <Link className="back-link" to="/register">
             <FiLogIn size={16} color="#e02041" />
-
             Não tenho cadastro
           </Link>
         </form>

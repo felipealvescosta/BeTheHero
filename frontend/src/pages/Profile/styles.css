@@ -15,6 +15,13 @@
   margin-left: 24px;
 }
 
+.profile-container header small{
+  font-size: 10px;
+  margin-left:-210px;
+  margin-top: 40px;
+  align-items: left;
+}
+
 .profile-container header img {
   height: 64px;
 }

@@ -9,6 +9,7 @@ import './styles.css';
 
 export default function Profile() {
   const ongId = localStorage.getItem('ongId');
+  const ongEmail = localStorage.getItem('ongEmail');
   const ongName = localStorage.getItem('ongName');
   const history = useHistory();
 
@@ -49,6 +50,7 @@ export default function Profile() {
       <header>
         <img src={logoImg} alt="Be The Hero"/>
         <span>Bem vindo, {ongName}</span>
+        <small>e-mail: {ongEmail} | id: {ongId}</small>
 
         <Link className="button" to="/incidents/new">Cadastrar novo caso</Link>
         <button onClick={handleLogout}>
