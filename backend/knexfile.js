@@ -16,6 +16,20 @@ module.exports = {
     useNullAsDefault:true, 
   },
 
+  test: {
+    client: 'mysql',
+    connection: {
+      host : '127.0.0.1',
+      user : 'root',
+      password : 'felipe123',
+      database : 'betheherotest'
+    },
+    migrations:{
+      directory:'./src/database/migrations'
+    },
+    useNullAsDefault:true, 
+  },
+
   staging: {
     client: 'postgresql',
     connection: {
